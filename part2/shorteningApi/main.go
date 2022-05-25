@@ -145,7 +145,7 @@ func RedirectOriginalHandler(w http.ResponseWriter, r *http.Request){
         checkMap := make(map[string]string)
         json.Unmarshal(jsonFromDB, &checkMap)
         if _, check := checkMap[vars["url"]]; check {
-            fmt.Println(checkMap[vars["url"]])
+            http.Redirect(w, r, checkMap[vars["url"]], 301)
             return
         }
     }
